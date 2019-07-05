@@ -1,9 +1,9 @@
 rm -rf /usr/local/promethues
 mkdir -p /usr/local/promethues
-cp prometheus.yml /usr/local/promethues/
+cp -f prometheus.yml /usr/local/promethues/
 mkdir -p /usr/local/promethues/server
 mkdir -p /usr/local/promethues/client
-touch /usr/local/promethues/server/rules.yml
+cp -f rules.yml  /usr/local/promethues/server/
 chmod 777 /usr/local/promethues/server/rules.yml
 docker stop  my-001-prometheus
 docker rm  my-001-prometheus
