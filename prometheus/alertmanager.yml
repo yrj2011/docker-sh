@@ -9,7 +9,7 @@ route:
 receivers:
   - name: 'web.hook'
     webhook_configs:
-      - url: 'http://192.168.1.86:8888/open/test'
+      - url: 'http://${ip}:8888/open/test'
 inhibit_rules:
   - source_match:
       severity: 'critical'

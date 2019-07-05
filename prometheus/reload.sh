@@ -1,1 +1,2 @@
-curl -X POST http://localhost:9090/-/reload
+#!/bin/bash
+curl -X POST http://$1:9090/-/reload

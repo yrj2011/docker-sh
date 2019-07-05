@@ -1,3 +1,4 @@
+#!/bin/bash
 rm -rf /usr/local/promethues
 mkdir -p /usr/local/promethues
 cp -f prometheus.yml /usr/local/promethues/
