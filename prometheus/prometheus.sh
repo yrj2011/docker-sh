@@ -2,6 +2,7 @@
 rm -rf /usr/local/promethues
 mkdir -p /usr/local/promethues
 cp -f prometheus.yml /usr/local/promethues/
+sed -i "s/##ip##/$1/g" /usr/local/promethues/prometheus.yml
 mkdir -p /usr/local/promethues/server
 mkdir -p /usr/local/promethues/client
 cp -f rules.yml  /usr/local/promethues/server/

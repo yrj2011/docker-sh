@@ -8,14 +8,14 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s #重写了全局抓取间隔时间，由15秒重写成5秒
     static_configs:
-      - targets: ['192.168.1.86:9090']
-      - targets: ['192.168.1.86:9100']
+      - targets: ['##ip##:9090']
+      - targets: ['##ip##:9100']
         labels:
           group: 'client-node-exporter'
-      - targets: ['192.168.1.86:9091']
+      - targets: ['##ip##:9091']
         labels:
           group: 'client-node-pushgateway'
 alerting:
   alertmanagers:
     - static_configs:
-        - targets: ["192.168.1.86:9093"] 
+        - targets: ["##ip##:9093"]
