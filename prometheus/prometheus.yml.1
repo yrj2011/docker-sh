@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     15s # 默认抓取间隔, 15秒向目标抓取一次数据。
+  external_labels:
+     monitor: 'codelab-monitor'
+# 这里表示抓取对象的配置
+scrape_configs:
+     #这个配置是表示在这个配置内的时间序例，每一条都会自动添加上这个{job_name:"prometheus"}的标签  
+  - job_name: 'prometheus'
+    scrape_interval: 5s #重写了全局抓取间隔时间，由15秒重写成5秒
+    static_configs:
+      - targets: ['##ip##:9090']
+      - targets: ['##ip##:9100']
+        labels:
+          group: 'client-node-exporter'
+      - targets: ['##ip##:9091']
+        labels:
+          group: 'client-node-pushgateway'
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["##ip##:9093"]

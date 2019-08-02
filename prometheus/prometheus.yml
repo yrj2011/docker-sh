@@ -1,21 +1,29 @@
+# my global config
 global:
-  scrape_interval:     15s # 默认抓取间隔, 15秒向目标抓取一次数据。
-  external_labels:
-     monitor: 'codelab-monitor'
-# 这里表示抓取对象的配置
-scrape_configs:
-     #这个配置是表示在这个配置内的时间序例，每一条都会自动添加上这个{job_name:"prometheus"}的标签  
-  - job_name: 'prometheus'
-    scrape_interval: 5s #重写了全局抓取间隔时间，由15秒重写成5秒
-    static_configs:
-      - targets: ['##ip##:9090']
-      - targets: ['##ip##:9100']
-        labels:
-          group: 'client-node-exporter'
-      - targets: ['##ip##:9091']
-        labels:
-          group: 'client-node-pushgateway'
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
 alerting:
   alertmanagers:
-    - static_configs:
-        - targets: ["##ip##:9093"]
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'spring'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    metrics_path: '/actuator/myprometheus'
+    static_configs:
+    - targets: ['192.168.1.167:8080']
