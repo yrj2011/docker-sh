@@ -1,0 +1,1 @@
+curl -X PUT   'http://consul:8501/v1/agent/service/deregister/smsmixcloud-smcp-upms-192-168-1-180-4000'   -H 'Content-Type: application/json'   -H 'Postman-Token: e1ff0ab2-172d-42b4-b7aa-f693852f9969'   -H 'cache-control: no-cache'
